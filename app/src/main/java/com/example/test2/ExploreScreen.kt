@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
@@ -21,28 +21,26 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ExploreScreen(isCompact: Boolean, viewModel: StudyViewModel) {
-    val selectedLocation by viewModel.selectedLocation.collectAsState()
+    val selectedIndex = viewModel.selectedLocationIndex.intValue
     val locations = viewModel.locations
 
     if (isCompact) {
-        if (selectedLocation == null) {
+        if (selectedIndex == -1) {
             LocationList(
                 locations = locations,
                 onLocationSelect = { viewModel.selectLocation(it) },
                 modifier = Modifier.fillMaxSize()
             )
         } else {
-            BackHandler { viewModel.selectLocation(null) }
+            BackHandler { viewModel.selectLocation(-1) }
             LocationDetail(
-                location = selectedLocation!!,
-                onBack = { viewModel.selectLocation(null) },
+                location = locations[selectedIndex],
+                onBack = { viewModel.selectLocation(-1) },
                 modifier = Modifier.fillMaxSize()
             )
         }
@@ -53,9 +51,9 @@ fun ExploreScreen(isCompact: Boolean, viewModel: StudyViewModel) {
                 onLocationSelect = { viewModel.selectLocation(it) },
                 modifier = Modifier.weight(1f)
             )
-            if (selectedLocation != null) {
+            if (selectedIndex != -1) {
                 LocationDetail(
-                    location = selectedLocation!!,
+                    location = locations[selectedIndex],
                     onBack = null,
                     modifier = Modifier.weight(1f)
                 )
@@ -75,21 +73,20 @@ fun ExploreScreen(isCompact: Boolean, viewModel: StudyViewModel) {
 @Composable
 fun LocationList(
     locations: List<StudyLocation>,
-    onLocationSelect: (StudyLocation) -> Unit,
+    onLocationSelect: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
-        items(locations) { location ->
+        itemsIndexed(locations) { index, location ->
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
-                    .clickable { onLocationSelect(location) },
+                    .clickable { onLocationSelect(index) },
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text(text = location.id.toString(), style = MaterialTheme.typography.titleLarge)
-                    Text(text = location.title, style = MaterialTheme.typography.titleLarge)
+                    Text(text = location.name, style = MaterialTheme.typography.titleLarge)
                     Text(text = location.category, style = MaterialTheme.typography.bodyMedium)
                 }
             }
@@ -108,7 +105,7 @@ fun LocationDetail(
         topBar = {
             if (onBack != null) {
                 TopAppBar(
-                    title = { Text(location.title) },
+                    title = { Text(location.name) },
                     navigationIcon = {
                         IconButton(onClick = onBack) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -125,7 +122,7 @@ fun LocationDetail(
                 .padding(16.dp)
         ) {
             if (onBack == null) {
-                Text(text = location.title, style = MaterialTheme.typography.headlineMedium)
+                Text(text = location.name, style = MaterialTheme.typography.headlineMedium)
             }
             Text(
                 text = "Category: ${location.category}",

@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
             Test2Theme {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 val studyViewModel: StudyViewModel = viewModel()
-                var currentRoute by rememberSaveable { mutableStateOf(Route.Explore) }
+                var currentRoute by rememberSaveable { mutableStateOf(Routes.EXPLORE) }
                 val isCompact = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
 
                 Scaffold { innerPadding ->
@@ -45,8 +45,6 @@ class MainActivity : ComponentActivity() {
                                 viewModel = studyViewModel
                             )
                         }
-
-
 
                         if (isCompact) {
                             AppNavigationRail(

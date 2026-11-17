@@ -1,7 +1,7 @@
 package com.example.test2
 
-enum class Route(val title: String) {
-    Explore("Explore"),
-    Tracker("Tracker"),
-    About("About")
+object Routes {
+    const val EXPLORE = "Explore"
+    const val TRACKER = "Tracker"
+    const val ABOUT = "About"
 }

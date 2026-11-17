@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 @Composable
 fun NavGraph(
     isCompact: Boolean,
-    currentRoute: Route,
+    currentRoute: String,
     viewModel: StudyViewModel
 ) {
     when (currentRoute) {
-        Route.Explore -> ExploreScreen(isCompact, viewModel)
-        Route.Tracker -> TrackerScreen(viewModel)
-        Route.About -> AboutScreen(isCompact)
+        Routes.EXPLORE -> ExploreScreen(isCompact, viewModel)
+        Routes.TRACKER -> TrackerScreen(viewModel)
+        Routes.ABOUT -> AboutScreen(isCompact)
     }
 }

@@ -17,36 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 val infoCards = listOf(
-    Pair("Campus Guide", "Your ultimate companion for finding the best study spots on campus."),
-    Pair("Study Goals", "Track your hours and build a consistent study habit throughout the semester."),
-    Pair("Library Hours", "Main library is open 24/7 during finals. Check local times for other branches."),
-    Pair("Tutoring", "Math and Science tutoring centers offer walk-in sessions every weekday."),
-    Pair("Counseling", "Mental health resources are available at the student health center."),
-    Pair("Events", "Join weekend study groups and hackathons at the student union."),
-    Pair("Campus Guide", "Your ultimate companion for finding the best study spots on campus."),
-    Pair("Study Goals", "Track your hours and build a consistent study habit throughout the semester."),
-    Pair("Library Hours", "Main library is open 24/7 during finals. Check local times for other branches."),
-    Pair("Tutoring", "Math and Science tutoring centers offer walk-in sessions every weekday."),
-    Pair("Counseling", "Mental health resources are available at the student health center."),
-    Pair("Events", "Join weekend study groups and hackathons at the student union."),
-    Pair("Campus Guide", "Your ultimate companion for finding the best study spots on campus."),
-    Pair("Study Goals", "Track your hours and build a consistent study habit throughout the semester."),
-    Pair("Library Hours", "Main library is open 24/7 during finals. Check local times for other branches."),
-    Pair("Tutoring", "Math and Science tutoring centers offer walk-in sessions every weekday."),
-    Pair("Counseling", "Mental health resources are available at the student health center."),
-    Pair("Events", "Join weekend study groups and hackathons at the student union."),
-    Pair("Campus Guide", "Your ultimate companion for finding the best study spots on campus."),
-    Pair("Study Goals", "Track your hours and build a consistent study habit throughout the semester."),
-    Pair("Library Hours", "Main library is open 24/7 during finals. Check local times for other branches."),
-    Pair("Tutoring", "Math and Science tutoring centers offer walk-in sessions every weekday."),
-    Pair("Counseling", "Mental health resources are available at the student health center."),
-    Pair("Events", "Join weekend study groups and hackathons at the student union."),
-    Pair("Campus Guide", "Your ultimate companion for finding the best study spots on campus."),
-    Pair("Study Goals", "Track your hours and build a consistent study habit throughout the semester."),
-    Pair("Library Hours", "Main library is open 24/7 during finals. Check local times for other branches."),
-    Pair("Tutoring", "Math and Science tutoring centers offer walk-in sessions every weekday."),
-    Pair("Counseling", "Mental health resources are available at the student health center."),
-    Pair("Events", "Join weekend study groups and hackathons at the student union.")
+    Pair("App Overview", "Campus & Study Companion to track progress and find locations."),
+    Pair("Course Info", "Check your syllabus and upcoming assignment deadlines."),
+    Pair("Student Details", "Manage your profile, student ID, and enrolled courses."),
+    Pair("Study Tips", "Take breaks every 45 minutes and stay hydrated.")
 )
 
 @Composable

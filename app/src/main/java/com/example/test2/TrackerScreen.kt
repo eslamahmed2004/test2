@@ -14,16 +14,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun TrackerScreen(viewModel: StudyViewModel) {
-    val studyHours by viewModel.studyHours.collectAsState()
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -43,11 +39,11 @@ fun TrackerScreen(viewModel: StudyViewModel) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "Study Goal Tracker",
+                    text = "Study Tracker",
                     style = MaterialTheme.typography.headlineMedium
                 )
                 Text(
-                    text = "$studyHours Hours",
+                    text = "${viewModel.studyHours.intValue} Hours",
                     style = MaterialTheme.typography.displayLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -55,18 +51,13 @@ fun TrackerScreen(viewModel: StudyViewModel) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Button(onClick = { viewModel.decrementHours() }) {
-                        Text("-1 Hour")
+
+                    Button(onClick = { viewModel.addHour() }) {
+                        Text("Add 1 Hour")
                     }
-                    Button(onClick = { viewModel.incrementHours() }) {
-                        Text("+1 Hour")
+                    Button(onClick = { viewModel.resetHours() }) {
+                        Text("Reset")
                     }
-                }
-                Button(
-                    onClick = { viewModel.resetHours() },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Reset Progress")
                 }
             }
         }
